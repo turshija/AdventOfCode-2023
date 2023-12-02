@@ -35,11 +35,11 @@ const extractGame = (line) => {
 const isGameValid = (game) => {
   const { sets } = game;
 
-  const isGameValid = sets.map((set) => {
+  const isGameValid = sets.every((set) => {
     return Object.entries(set).every(([color, balls]) => {
       return balls <= AVAILABLE_BALLS[color];
     });
-  }).reduce((acc, curr) => acc && curr, true);
+  })
 
   return { gameNumber: game.gameNumber, isGameValid };
 }
